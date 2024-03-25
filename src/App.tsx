@@ -8,7 +8,7 @@ import Man from './components/Man';
 type CurrentScreenType = 'start' | 'playing' | 'won' | 'lost';
 
 function App() {
-  const words: string[] = ['corn', 'corgi', 'coo', 'phone', 'book', 'nook']
+  const words: string[] = ['corn', 'corgi', 'coo', 'phone', 'book', 'nook'];
   const [ word, setWord ] = useState('');
   const [ wrongLetters, setWrongLetters ] = useState<string[]>([]);
   const [ correctLetters, setCorrectLetters ] = useState<string[]>([]);
@@ -25,13 +25,15 @@ function App() {
   const checkLetter = (input: string) => {
     const inputArray = Array.from(word);
 
-    // if current input letter is found in word(word state), do this
-      // add letter to correct spot, need a win condition: if all spots are not empty?
-    let lettersInPosition = correctLetters.slice();
+    // ! if 4 letters are wrong, and 5th letter entered is correct, we lose
+    // ! FIX ME
 
+
+    let lettersInPosition = correctLetters.slice();
+    let updatedWrongLetters = wrongLetters.slice();
+
+    // if current input letter is found in word(word state), do this
     if(inputArray.includes(input)){
-      console.log(correctLetters);
-      console.log('letter found in word');
       // when letter is found in word, place letters in corresponding spots in correctLetters
 
       inputArray.forEach((letter, index) => {
@@ -41,31 +43,31 @@ function App() {
       })
       setCorrectLetters(lettersInPosition);
       // need to loop over to add letters where blank spaces exsist
-      console.log(lettersInPosition);
+      console.log('letter found in word');
     // if current input letter is not found in word to guess, do this
     } else {
-      const oldWrongLetters = wrongLetters.slice();
       // Dont add a repeat of a letter to list
-      if(!oldWrongLetters.includes(input)){
-        oldWrongLetters.push(input);
-        setWrongLetters(oldWrongLetters);
+      if(!updatedWrongLetters.includes(input)){
+        updatedWrongLetters.push(input);
+        setWrongLetters(updatedWrongLetters);
       }
       console.log('letter not found!')
     }
 
-    console.log(lettersInPosition.join(''));
+    console.log('correct letters with letters joined: ' + lettersInPosition.join(''));
 
     if(lettersInPosition.join('') === word){
       setCurrentScreen('won');
     }
-    // win condition needs to be here!
-    // if each index of correct letters has a letter in it, game won
-    // display win message, display play again button
 
-    // if wrong letters is 5 long, set game to lost
-    if(wrongLetters.length === 5){
+    // ! if 4 letters are wrong, and 5th letter entered is correct, we lose
+    // ! FIX ME
+    console.log('wrong letter amount: ' + updatedWrongLetters.length);
+    if(updatedWrongLetters.length === 6){
       setCurrentScreen('lost');
     }
+
+    console.log('_________________________');
   }
 
   const resetGame = () => {
