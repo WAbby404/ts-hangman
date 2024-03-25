@@ -1,11 +1,10 @@
 // @ts-nocheck
 
 type LetterLinesProps = {
-    word: string
     correctLetters: string[]
 }
 
-function LetterLines({word, correctLetters}: LetterLinesProps) {
+function LetterLines({correctLetters}: LetterLinesProps) {
     return (
         <div className="letter-line-parent">
             {correctLetters.map((correctLetter, index) => {

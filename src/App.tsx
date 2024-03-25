@@ -9,42 +9,41 @@ type CurrentScreenType = 'start' | 'playing' | 'won' | 'lost';
 
 function App() {
   const words: string[] = ['corn', 'corgi', 'coo', 'phone', 'book', 'nook'];
-  const [ word, setWord ] = useState('');
+  const [ wordToGuess, setWordToGuess ] = useState('');
   const [ wrongLetters, setWrongLetters ] = useState<string[]>([]);
   const [ correctLetters, setCorrectLetters ] = useState<string[]>([]);
   const [ currentScreen, setCurrentScreen ] = useState<CurrentScreenType>('start');
 
+  // runs on 'Play hangman' start, sets states to start playing
   const playHangman = () => {
     // pick a random word from the array of words
     const wordToSet = words[Math.floor(Math.random() * words.length)];
-    setWord(wordToSet);
+    setWordToGuess(wordToSet);
     setCorrectLetters(Array(wordToSet.length).fill(' '));
     setCurrentScreen('playing');
   }
 
+  // runs when a letter is entered
   const checkLetter = (input: string) => {
-    const inputArray = Array.from(word);
-
-    // ! if 4 letters are wrong, and 5th letter entered is correct, we lose
-    // ! FIX ME
-
-
-    let lettersInPosition = correctLetters.slice();
+    // make wordToGeuss into an array, each letter at the next index
+    const inputArray = Array.from(wordToGuess);
+    // make copies of exsisting 
+    let updatedCorrectLetters = correctLetters.slice();
     let updatedWrongLetters = wrongLetters.slice();
 
-    // if current input letter is found in word(word state), do this
+    // if current input letter is found in wordToGuess
     if(inputArray.includes(input)){
-      // when letter is found in word, place letters in corresponding spots in correctLetters
 
+      // when letter is found in wordToGuess, place letters in corresponding spots in correctLetters
       inputArray.forEach((letter, index) => {
         if(input === letter){
-          lettersInPosition[index] = input;
+          updatedCorrectLetters[index] = input;
         }
       })
-      setCorrectLetters(lettersInPosition);
+      setCorrectLetters(updatedCorrectLetters);
       // need to loop over to add letters where blank spaces exsist
-      console.log('letter found in word');
-    // if current input letter is not found in word to guess, do this
+      console.log('letter found in wordToGuess');
+    // if current input letter is not found in wordToGuess to guess, do this
     } else {
       // Dont add a repeat of a letter to list
       if(!updatedWrongLetters.includes(input)){
@@ -54,14 +53,12 @@ function App() {
       console.log('letter not found!')
     }
 
-    console.log('correct letters with letters joined: ' + lettersInPosition.join(''));
+    console.log('correct letters with letters joined: ' + updatedCorrectLetters.join(''));
 
-    if(lettersInPosition.join('') === word){
+    if(updatedCorrectLetters.join('') === wordToGuess){
       setCurrentScreen('won');
     }
 
-    // ! if 4 letters are wrong, and 5th letter entered is correct, we lose
-    // ! FIX ME
     console.log('wrong letter amount: ' + updatedWrongLetters.length);
     if(updatedWrongLetters.length === 6){
       setCurrentScreen('lost');
@@ -72,7 +69,7 @@ function App() {
 
   const resetGame = () => {
     setCurrentScreen('start');
-    setWord('');
+    setWordToGuess('');
     setCorrectLetters([]);
     setWrongLetters([]);
   }
@@ -85,7 +82,7 @@ function App() {
         return (
           <div>
             <Man wrongLetters={wrongLetters}/>
-            <LetterLines word={word} correctLetters={correctLetters}/>
+            <LetterLines correctLetters={correctLetters}/>
             <InputForm checkLetter={checkLetter}/>
             {wrongLetters.map((letter,index) => {
               return (
@@ -99,9 +96,8 @@ function App() {
           return (
             <div>
               <Man wrongLetters={wrongLetters}/>
-              <h3>You won! The word was {word}.</h3>
+              <h3>You won! The word was {wordToGuess}.</h3>
               <h4>Play again?</h4>
-              {/* clear word, wrong letters, correctLetters IN THIS FN (so move it!) */}
               <button onClick={() => resetGame()}>Play</button>
             </div>
           )
@@ -110,16 +106,16 @@ function App() {
           return (
             <div>
               <Man wrongLetters={wrongLetters}/>
-              <h3>You lost! The word was {word}.</h3>
+              <h3>You lost! The word was {wordToGuess}.</h3>
               <h4>Play again?</h4>
               <button onClick={() => resetGame()}>Play</button>
             </div>
           )
+
       default:
         return <PlayButton playHangman={playHangman}/>;
     }
   };
-
 
   return (
     <div>
