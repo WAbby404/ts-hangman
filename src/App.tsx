@@ -4,7 +4,6 @@ import InputForm from './components/InputForm';
 import LetterLines from './components/LetterLines';
 import Man from './components/Man';
 
-// template literal example yay :)
 type CurrentScreenType = 'start' | 'playing' | 'won' | 'lost';
 
 function App() {
@@ -31,42 +30,42 @@ function App() {
     let updatedCorrectLetters = correctLetters.slice();
     let updatedWrongLetters = wrongLetters.slice();
 
-    // if current input letter is found in wordToGuess
+    // if current input letter is found in wordToGuess...
     if(inputArray.includes(input)){
-
-      // when letter is found in wordToGuess, place letters in corresponding spots in correctLetters
+      // place letter in corresponding spot in correctLetters
       inputArray.forEach((letter, index) => {
         if(input === letter){
           updatedCorrectLetters[index] = input;
         }
       })
+      // and update the state with an updated correct letters array
       setCorrectLetters(updatedCorrectLetters);
-      // need to loop over to add letters where blank spaces exsist
+
       console.log('letter found in wordToGuess');
-    // if current input letter is not found in wordToGuess to guess, do this
     } else {
-      // Dont add a repeat of a letter to list
+      // add current letter to wrong letter array, but dont include duplicates
       if(!updatedWrongLetters.includes(input)){
         updatedWrongLetters.push(input);
         setWrongLetters(updatedWrongLetters);
       }
-      console.log('letter not found!')
+      console.log('letter not found!');
     }
 
     console.log('correct letters with letters joined: ' + updatedCorrectLetters.join(''));
+    console.log('wrong letter amount: ' + updatedWrongLetters.length);
 
+    // Win condition: if all letters in correct letter array combined equals to the wordToGuess
     if(updatedCorrectLetters.join('') === wordToGuess){
       setCurrentScreen('won');
     }
 
-    console.log('wrong letter amount: ' + updatedWrongLetters.length);
+    // Lose condition: if wrong letters are guessed 6 times (if wrong letters array has a length of 6)
     if(updatedWrongLetters.length === 6){
       setCurrentScreen('lost');
     }
-
-    console.log('_________________________');
   }
 
+  // resets states, or game envionment to play again
   const resetGame = () => {
     setCurrentScreen('start');
     setWordToGuess('');
@@ -74,8 +73,7 @@ function App() {
     setWrongLetters([]);
   }
 
-
-  // make these pages their own file?
+  // Renders different screens based on current screen state
   const renderSwitch = () => {
     switch(currentScreen) {
       case ('playing'):
