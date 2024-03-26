@@ -12,7 +12,6 @@ function InputForm({checkLetter}: InputFormProps) {
         // get most recently typed character, so we only type one letter at a time
         const input = e.target.value;
         const getMostRecentlyTypedLetter = input.charAt(input.length -1);
-        // console.log(getMostRecentlyTypedLetter);
         setInputValue(getMostRecentlyTypedLetter);
     }
 
@@ -25,7 +24,7 @@ function InputForm({checkLetter}: InputFormProps) {
         <div>
             <form onSubmit={handleSubmit}>
                 <input onChange={handleChange} value={inputValue}/>
-                <button type="submit">Enter</button>
+                <button className="button" type="submit">Enter</button>
             </form>
         </div>
     );

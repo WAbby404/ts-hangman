@@ -43,8 +43,8 @@ function App() {
 
       console.log('letter found in wordToGuess');
     } else {
-      // add current letter to wrong letter array, but dont include duplicates
-      if(!updatedWrongLetters.includes(input)){
+      // add current letter to wrong letter array, but dont include duplicates or empty strings
+      if(!updatedWrongLetters.includes(input) && (input !== '')){
         updatedWrongLetters.push(input);
         setWrongLetters(updatedWrongLetters);
       }
@@ -78,35 +78,37 @@ function App() {
     switch(currentScreen) {
       case ('playing'):
         return (
-          <div>
+          <div className="playing-box">
             <Man wrongLetters={wrongLetters}/>
             <LetterLines correctLetters={correctLetters}/>
             <InputForm checkLetter={checkLetter}/>
-            {wrongLetters.map((letter,index) => {
-              return (
-                <div key={index}>{letter}</div>
-              )
-            })}
+            <div>
+              {wrongLetters.map((letter,index) => {
+                return (
+                  <div key={index}>{letter}</div>
+                )
+              })}
+            </div>
           </div>
         )
 
       case('won'):
           return (
-            <div>
+            <div className="playing-box">
               <Man wrongLetters={wrongLetters}/>
               <h3>You won! The word was {wordToGuess}.</h3>
               <h4>Play again?</h4>
-              <button onClick={() => resetGame()}>Play</button>
+              <button className="button" onClick={() => resetGame()}>Play</button>
             </div>
           )
 
       case('lost'):
           return (
-            <div>
+            <div className="playing-box">
               <Man wrongLetters={wrongLetters}/>
               <h3>You lost! The word was {wordToGuess}.</h3>
               <h4>Play again?</h4>
-              <button onClick={() => resetGame()}>Play</button>
+              <button className="button" onClick={() => resetGame()}>Play</button>
             </div>
           )
 
@@ -116,7 +118,7 @@ function App() {
   };
 
   return (
-    <div>
+    <div className="app">
       {renderSwitch()}
     </div>
   );
