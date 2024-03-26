@@ -44,8 +44,8 @@ function App() {
 
       console.log('letter found in wordToGuess');
     } else {
-      // add current letter to wrong letter array, but dont include duplicates or empty strings
-      if(!updatedWrongLetters.includes(input) && (input !== '')){
+      // add current letter to wrong letter array, but dont include duplicates, empty strings, uppercase, or spaces
+      if((!updatedWrongLetters.includes(input)) && (input !== '') && (!updatedWrongLetters.includes(input.toLowerCase())) && (input !== ' ')){
         updatedWrongLetters.push(input);
         setWrongLetters(updatedWrongLetters);
       }
@@ -99,8 +99,8 @@ function App() {
           return (
             <div className="playing-box">
               <Man wrongLetters={wrongLetters}/>
-              <h3>You won! The word was {wordToGuess}.</h3>
-              <h4>Play again?</h4>
+              <h3 className="words-center">You won! The word was {wordToGuess}.</h3>
+              <h4 className="words-center">Play again?</h4>
               <button className="button" onClick={() => resetGame()}>Play</button>
             </div>
           )
@@ -109,8 +109,8 @@ function App() {
           return (
             <div className="playing-box">
               <Man wrongLetters={wrongLetters}/>
-              <h3>You lost! The word was {wordToGuess}.</h3>
-              <h4>Play again?</h4>
+              <h3 className="words-center">You lost! The word was {wordToGuess}.</h3>
+              <h4 className="words-center">Play again?</h4>
               <button className="button" onClick={() => resetGame()}>Play</button>
             </div>
           )
