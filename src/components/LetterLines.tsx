@@ -6,10 +6,10 @@ type LetterLinesProps = {
 
 function LetterLines({correctLetters}: LetterLinesProps) {
     return (
-        <div className="letter-line-parent">
+        <div className="letterlines-parent">
             {correctLetters.map((correctLetter, index) => {
                 return(
-                    <div key={index}>
+                    <div key={index} className="letterlines-box">
                         <div>{correctLetter}</div>
                         <div className="letter-line"></div>
                     </div>

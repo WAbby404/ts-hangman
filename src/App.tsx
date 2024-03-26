@@ -26,7 +26,8 @@ function App() {
   const checkLetter = (input: string) => {
     // make wordToGeuss into an array, each letter at the next index
     const inputArray = Array.from(wordToGuess);
-    // make copies of exsisting 
+
+    // make copies of exsisting correct and wrong letters
     let updatedCorrectLetters = correctLetters.slice();
     let updatedWrongLetters = wrongLetters.slice();
 
@@ -80,14 +81,16 @@ function App() {
         return (
           <div className="playing-box">
             <Man wrongLetters={wrongLetters}/>
-            <LetterLines correctLetters={correctLetters}/>
-            <InputForm checkLetter={checkLetter}/>
-            <div>
-              {wrongLetters.map((letter,index) => {
-                return (
-                  <div key={index}>{letter}</div>
-                )
-              })}
+            <div className="letter-playing-box">
+              <LetterLines correctLetters={correctLetters}/>
+              <InputForm checkLetter={checkLetter}/>
+              <div className="wrong-letters-box">
+                {wrongLetters.map((letter,index) => {
+                  return (
+                    <div className="wrong-letter" key={index}>{letter}{(index !== wrongLetters.length -1) && ', '}</div>
+                  )
+                })}
+              </div>
             </div>
           </div>
         )
