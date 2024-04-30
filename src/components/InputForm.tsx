@@ -2,7 +2,6 @@ import { useState } from 'react';
 
 type InputFormProps = {
     checkLetter: (input: string) => void
-    // submit form call parent
 }
 
 function InputForm({checkLetter}: InputFormProps) {

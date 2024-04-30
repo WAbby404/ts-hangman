@@ -1,5 +1,3 @@
-// @ts-nocheck
-
 type LetterLinesProps = {
     correctLetters: string[]
 }
