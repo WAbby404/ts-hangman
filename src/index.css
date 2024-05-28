@@ -1,14 +1,14 @@
-*{
+* {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 16px;
   font-weight: 300;
   font-display: swap;
 }
 
-.app{
+.app {
   background-color: #6c8adf;
   min-height: 100vh;
   margin: 0 auto;
@@ -18,7 +18,7 @@
 }
 
 /* Play Button & Logo */
-.play-box{
+.play-box {
   margin: 10%;
   display: flex;
   flex-direction: column;
@@ -26,15 +26,15 @@
 }
 
 /* Playing Screen */
-.playing-box{
-  display:flex;
+.playing-box {
+  display: flex;
   flex-direction: column;
   margin-top: 7%;
   gap: 40px;
   /* border: 1px solid white; */
 }
 
-.letter-playing-box{
+.letter-playing-box {
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -47,40 +47,39 @@
 
 /* Button Styling */
 
-.button{
+.button {
   padding: 5px;
   background-color: #0e1136;
   border: none;
   color: white;
   border-radius: 5px;
-  box-shadow: 0px 0px 11px 0px rgba(0,0,0,0.37);
+  box-shadow: 0px 0px 11px 0px rgba(0, 0, 0, 0.37);
   transition: 0.3s;
 }
 
-.button:hover{
+.button:hover {
   background-color: #292d5f;
   transform: scale(1.1);
 }
 
-.button:focus{
+.button:focus {
   background-color: #0e1136;
   transform: scale(1);
 }
 
 /* Finish Screen */
-.words-center{
+.words-center {
   text-align: center;
 }
 
 /* Form Styling */
-.inputForm{
-  display:flex;
+.inputForm {
+  display: flex;
   gap: 20px;
 }
 
-
 /* Wrong Letters */
-.wrong-letters-box{
+.wrong-letters-box {
   display: flex;
   gap: 10px;
   height: 50px;
@@ -89,26 +88,25 @@
   color: black;
 }
 
-.wrong-letter{
+.wrong-letter {
   font-size: 30px;
 }
 
-
 /* Lines that correct letters appear on */
-.letterlines-box{
+.letterlines-box {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.letterlines-parent{
-  align-items: end;
+.letterlines-parent {
+  align-items: flex-end;
   display: flex;
   height: 50px;
   margin: auto;
 }
 
-.letter-line{
+.letter-line {
   border-left: 50px solid black;
   height: 3px;
   margin: 5px;
@@ -116,48 +114,48 @@
 
 /* Man */
 
-.man-parts-box{
+.man-parts-box {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.arm{
+.arm {
   width: 112px;
   height: 47px;
   border-bottom: 5px solid rgb(197, 24, 24);
   transform: translateY(50px) translateX(-10px) rotate(110deg);
 }
 
-.leg{
+.leg {
   width: 112px;
   height: 47px;
   border-bottom: 5px solid rgb(197, 24, 24);
   transform: translateY(0px) translateX(-10px) rotate(110deg);
 }
 
-
-.arm2, .leg2{
+.arm2,
+.leg2 {
   width: 112px;
   height: 47px;
   border-bottom: 5px solid rgb(197, 24, 24);
   transform: translateY(-10px) translateX(45px) rotate(70deg);
 }
 
-.leg2{
+.leg2 {
   width: 112px;
   height: 47px;
   border-bottom: 5px solid rgb(197, 24, 24);
   transform: translateY(-60px) translateX(45px) rotate(70deg);
 }
 
-.torso{
+.torso {
   border-left: 6px solid rgb(197, 24, 24);
   height: 150px;
   transform: translateY(-40px);
 }
 
-.head{
+.head {
   height: 50px;
   width: 50px;
   background-color: rgb(197, 24, 24);
